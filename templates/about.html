@@ -1,0 +1,200 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- ================= DOCTOR HERO ================= -->
+<section class="doctor-hero">
+
+<div class="container text-center">
+
+<h1 class="hero-title">Meet Our Specialist</h1>
+
+<p class="hero-subtitle">
+Expert Dental Care with International Experience
+</p>
+
+</div>
+
+</section>
+
+
+
+<!-- ================= DOCTOR PROFILE ================= -->
+<section class="doctor-section">
+
+<div class="container">
+
+<div class="row align-items-center justify-content-center g-5">
+
+<!-- DOCTOR IMAGE -->
+<div class="col-lg-4 text-center">
+
+<div class="doctor-image-card">
+
+<img src="{{ doctor.photo.url }}"
+     class="img-fluid doctor-img"
+     alt="Doctor Photo">
+
+</div>
+
+</div>
+
+
+<!-- DOCTOR DETAILS -->
+<div class="col-lg-6">
+
+<div class="doctor-card">
+
+<h2 class="doctor-name">
+{{ doctor.name }}
+</h2>
+
+<div class="divider"></div>
+
+<!-- EDUCATION -->
+<h5 class="section-title">
+<i class="bi bi-mortarboard-fill me-2"></i>
+Education & Qualifications
+</h5>
+
+<p class="doctor-text">
+{{ doctor.education }}
+</p>
+
+
+<!-- ACHIEVEMENTS -->
+<h5 class="section-title mt-4">
+<i class="bi bi-award-fill me-2"></i>
+Achievements & Certifications
+</h5>
+
+<p class="doctor-text">
+{{ doctor.achievements }}
+</p>
+
+
+<a href="/appointment/"
+class="btn btn-primary rounded-pill px-4 py-2 mt-4">
+Book Appointment
+</a>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</section>
+
+
+
+<!-- ================= STYLE ================= -->
+<style>
+
+/* HERO */
+.doctor-hero{
+    padding:90px 0;
+    background:linear-gradient(135deg,#0d6efd,#4da3ff);
+    color:white;
+}
+
+.hero-title{
+    font-size:42px;
+    font-weight:700;
+}
+
+.hero-subtitle{
+    font-size:18px;
+    opacity:.9;
+}
+
+
+/* MAIN SECTION */
+.doctor-section{
+    background:linear-gradient(135deg,#f4f9ff,#ffffff);
+    padding:100px 0;
+}
+
+
+/* IMAGE CARD */
+.doctor-image-card{
+    background:white;
+    border-radius:25px;
+    padding:18px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.08);
+    transition:.4s;
+}
+
+.doctor-image-card:hover{
+    transform:translateY(-8px);
+}
+
+.doctor-img{
+    border-radius:20px;
+    width:100%;
+    object-fit:cover;
+}
+
+
+/* DETAILS CARD */
+.doctor-card{
+    background:white;
+    border-radius:25px;
+    padding:40px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.08);
+    transition:.4s;
+}
+
+.doctor-card:hover{
+    transform:translateY(-6px);
+}
+
+
+/* NAME */
+.doctor-name{
+    font-weight:700;
+    color:#0d6efd;
+}
+
+
+/* DIVIDER */
+.divider{
+    height:3px;
+    width:70px;
+    background:#0d6efd;
+    margin:15px 0 25px;
+    border-radius:10px;
+}
+
+
+/* TITLES */
+.section-title{
+    font-weight:600;
+    color:#0d6efd;
+}
+
+
+/* TEXT */
+.doctor-text{
+    color:#555;
+    line-height:1.7;
+}
+
+
+/* MOBILE RESPONSIVE */
+@media(max-width:768px){
+
+.hero-title{
+    font-size:30px;
+}
+
+.doctor-card{
+    padding:25px;
+}
+
+}
+
+</style>
+
+{% endblock %}

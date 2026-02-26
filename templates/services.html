@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- ================= HERO ================= -->
+<section class="py-5 text-white"
+style="background: linear-gradient(135deg,#0d6efd,#0a58ca);">
+
+<div class="container text-center">
+    <h1 class="fw-bold">Our Dental Services</h1>
+    <p class="lead mb-0">
+        Advanced treatments designed for healthy and confident smiles
+    </p>
+</div>
+
+</section>
+
+
+<!-- ================= SERVICES ================= -->
+<section class="py-5" style="background:#f4f9ff;">
+
+<div class="container">
+<div class="row g-4">
+
+{% for service in services %}
+<div class="col-lg-4 col-md-6">
+
+<div class="service-card h-100">
+
+<!-- Service Image -->
+<div class="service-image">
+    <img src="{{ service.image.url }}"
+         alt="{{ service.name }}">
+</div>
+
+<div class="p-4 text-center">
+
+<h5 class="fw-bold text-primary">
+    {{ service.name }}
+</h5>
+
+<p class="text-muted">
+    {{ service.description }}
+</p>
+
+<a href="{% url 'appointment' %}"
+class="btn btn-outline-primary rounded-pill px-4">
+Book Appointment
+</a>
+
+</div>
+
+</div>
+
+</div>
+{% empty %}
+<div class="text-center">
+    <p>No services added yet.</p>
+</div>
+{% endfor %}
+
+</div>
+</div>
+
+</section>
+
+
+<!-- ================= WHATSAPP FLOAT ================= -->
+<a href="https://wa.me/919744668856"
+target="_blank"
+class="whatsapp-float">
+<i class="bi bi-whatsapp"></i>
+</a>
+
+
+<!-- ================= STYLE ================= -->
+<style>
+
+/* Card */
+.service-card{
+    background:white;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 6px 18px rgba(0,0,0,0.08);
+    transition:0.35s ease;
+}
+
+.service-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 12px 30px rgba(13,110,253,0.25);
+}
+
+/* Image */
+.service-image{
+    height:220px;
+    overflow:hidden;
+}
+
+.service-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:0.4s ease;
+}
+
+.service-card:hover img{
+    transform:scale(1.08);
+}
+
+/* WhatsApp Button */
+.whatsapp-float{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:#25D366;
+    color:white;
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:28px;
+    box-shadow:0 6px 15px rgba(0,0,0,0.25);
+    z-index:999;
+}
+
+</style>
+
+{% endblock %}
