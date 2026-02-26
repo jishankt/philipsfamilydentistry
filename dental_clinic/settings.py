@@ -10,20 +10,26 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
+import os
 from pathlib import Path
+from dotenv import load_dotenv
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+load_dotenv(BASE_DIR / ".env")
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-zzziw09%1f^j=vz*yzc!5!g-k)t_5%o9tyuf)3qu8nt)4z&co3'
+
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("DEBUG") == "True"
 
 ALLOWED_HOSTS = []
 
@@ -73,14 +79,12 @@ WSGI_APPLICATION = 'dental_clinic.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
-import dj_database_url
-import os
+
 
 DATABASES = {
     "default": dj_database_url.parse(
-        "postgresql://postgres.lgqnpppslmlvywreljgl:YeGvyLd76.ghjjjjkli@aws-1-ap-northeast-1.pooler.supabase.com:6543/postgres",
+        os.getenv("DATABASE_URL"),
         conn_max_age=600,
-        ssl_require=True,
     )
 }
 
