@@ -1,16 +1,32 @@
 from django import forms
 from .models import Appointment
+from datetime import date
+
 
 class AppointmentForm(forms.ModelForm):
+
     class Meta:
         model = Appointment
-        fields = ['name', 'phone', 'date', 'message']   # no email
+        fields = ['name', 'phone', 'date', 'message']
 
-    def __init__(self,*args,**kwargs):
-        super().__init__(*args,**kwargs)
+        # ✅ MUST be inside Meta
+        widgets = {
+            "date": forms.DateInput(
+                attrs={
+                    "type": "date",
+                    "min": date.today().isoformat()
+                }
+            ),
+        }
 
-        for field in self.fields.values():
-            field.widget.attrs.update({
-                'class': 'form-control',
-                'placeholder': field.label
-            })
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        for name, field in self.fields.items():
+            attrs = {'class': 'form-control'}
+
+            # remove placeholder for date picker
+            if name != "date":
+                attrs['placeholder'] = field.label
+
+            field.widget.attrs.update(attrs)
